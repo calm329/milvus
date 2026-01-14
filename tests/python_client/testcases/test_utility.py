@@ -6400,13 +6400,13 @@ class TestUtilityPositiveRbacPrivilegeGroup(TestcaseBase):
         # PrivilegeCreateCollection
         if privilege_group_privilege_dict["CreateCollection"]:
             collection_w_new = self.init_collection_general(prefix, is_index=False, is_flush=False)[0]
-            collection_w_new.set_properties({"collection.ttl.seconds": 60})
+            collection_w_new.set_properties({"ttl_seconds": 60})
         else:
             try:
                 self.init_collection_general(prefix)[0]
             except Exception as e:
                 log.info(e)
-            collection_w.set_properties({"collection.ttl.seconds": 60}, check_task=CheckTasks.check_permission_deny)
+            collection_w.set_properties({"ttl_seconds": 60}, check_task=CheckTasks.check_permission_deny)
         # PrivilegeDropCollection
         if privilege_group_privilege_dict["DropCollection"]:
             collection_w_new.drop()

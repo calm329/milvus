@@ -49,7 +49,7 @@ class TestPartitionKeyIsolation(TestcaseBase):
                                   num_partitions=1)
         collection = Collection(name=collection_name, schema=schema, num_partitions=1)
 
-        collection.set_properties({"partitionkey.isolation": enable_isolation})
+        collection.set_properties({"partition_key_isolation": enable_isolation})
         log.info(f"collection {collection_name} created: {collection.describe()}")
         index_params = {"metric_type": "L2", "index_type": "HNSW", "params": {"M": 30, "efConstruction": 360}}
         log.info(f"collection {collection_name} created")
@@ -150,7 +150,7 @@ class TestPartitionKeyIsolation(TestcaseBase):
                                   num_partitions=1)
         collection = Collection(name=collection_name, schema=schema, num_partitions=1)
 
-        collection.set_properties({"partitionkey.isolation": enable_isolation})
+        collection.set_properties({"partition_key_isolation": enable_isolation})
         log.info(f"collection {collection_name} created: {collection.describe()}")
         index_params = {"metric_type": "L2", "index_type": "HNSW", "params": {"M": 30, "efConstruction": 360}}
         log.info(f"collection {collection_name} created")
@@ -256,7 +256,7 @@ class TestPartitionKeyIsolation(TestcaseBase):
                                   num_partitions=1)
         collection = Collection(name=collection_name, schema=schema)
         try:
-            collection.set_properties({"partitionkey.isolation": enable_isolation})
+            collection.set_properties({"partition_key_isolation": enable_isolation})
             assert False
         except Exception as e:
             log.info(f"set_properties failed without partition key {e}")
@@ -289,7 +289,7 @@ class TestPartitionKeyIsolation(TestcaseBase):
                                   num_partitions=1)
         collection = Collection(name=collection_name, schema=schema, num_partitions=1)
 
-        collection.set_properties({"partitionkey.isolation": enable_isolation})
+        collection.set_properties({"partition_key_isolation": enable_isolation})
         log.info(f"collection {collection_name} created: {collection.describe()}")
         index_params = {"metric_type": "L2", "index_type": "HNSW", "params": {"M": 30, "efConstruction": 360}}
         log.info(f"collection {collection_name} created")
@@ -333,14 +333,14 @@ class TestPartitionKeyIsolation(TestcaseBase):
         log.info(f"create index cost time {tt}")
         result = True
         try:
-            collection.set_properties({"partitionkey.isolation": "true"})
+            collection.set_properties({"partition_key_isolation": "true"})
 
         except Exception as e:
             result = False
             log.info(f"set_properties after vector indexed {e}")
         assert result is False
         collection.drop_index()
-        collection.set_properties({"partitionkey.isolation": "true"})
+        collection.set_properties({"partition_key_isolation": "true"})
         collection.create_index("emb", index_params=index_params)
         collection.load()
         res = collection.search(

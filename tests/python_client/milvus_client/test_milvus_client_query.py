@@ -4695,14 +4695,14 @@ class TestQueryString(TestMilvusClientV2Base):
         res_len = len(result)
         # 5. enable offset cache and verify result count remains same
         self.release_collection(client, collection_name)
-        self.alter_index_properties(client, collection_name, ct.default_string_field_name, properties={'indexoffsetcache.enabled': True})
+        self.alter_index_properties(client, collection_name, ct.default_string_field_name, properties={'index_offset_cache_enabled': True})
         self.load_collection(client, collection_name)
         result_with_cache = self.query(client, collection_name, filter=expression, output_fields=[ct.default_string_field_name])[0]
         res_len_with_cache = len(result_with_cache)
         assert res_len_with_cache == res_len
         # 6. disable offset cache and verify result count remains same
         self.release_collection(client, collection_name)
-        self.alter_index_properties(client, collection_name, ct.default_string_field_name, properties={'indexoffsetcache.enabled': False})
+        self.alter_index_properties(client, collection_name, ct.default_string_field_name, properties={'index_offset_cache_enabled': False})
         self.load_collection(client, collection_name)
         result_without_cache = self.query(client, collection_name, filter=expression, output_fields=[ct.default_string_field_name])[0]
         res_len_without_cache = len(result_without_cache)

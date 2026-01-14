@@ -186,7 +186,7 @@ const (
 //  Collection properties key
 
 const (
-	CollectionTTLConfigKey      = "collection.ttl.seconds"
+	CollectionTTLConfigKey      = "ttl_seconds"
 	CollectionAutoCompactionKey = "collection.autocompaction.enabled"
 	CollectionDescription       = "collection.description"
 	CollectionTTLFieldKey       = "ttl_field"
@@ -199,46 +199,46 @@ const (
 	// Function output fields cannot be included in inserted data.
 	// In particular, the `bm25` function output field is always disallowed
 	// and is not controlled by this option.
-	CollectionAllowInsertNonBM25FunctionOutputs = "collection.function.allowInsertNonBM25FunctionOutputs"
+	CollectionAllowInsertNonBM25FunctionOutputs = "collection.function.allow_insert_non_bm25_function_outputs"
 
 	// rate limit
-	CollectionInsertRateMaxKey   = "collection.insertRate.max.mb"
-	CollectionInsertRateMinKey   = "collection.insertRate.min.mb"
-	CollectionDeleteRateMaxKey   = "collection.deleteRate.max.mb"
-	CollectionDeleteRateMinKey   = "collection.deleteRate.min.mb"
-	CollectionBulkLoadRateMaxKey = "collection.bulkLoadRate.max.mb"
-	CollectionBulkLoadRateMinKey = "collection.bulkLoadRate.min.mb"
-	CollectionQueryRateMaxKey    = "collection.queryRate.max.qps"
-	CollectionQueryRateMinKey    = "collection.queryRate.min.qps"
-	CollectionSearchRateMaxKey   = "collection.searchRate.max.vps"
-	CollectionSearchRateMinKey   = "collection.searchRate.min.vps"
-	CollectionDiskQuotaKey       = "collection.diskProtection.diskQuota.mb"
+	CollectionInsertRateMaxKey   = "insert_rate_max_mb"
+	CollectionInsertRateMinKey   = "insert_rate_min_mb"
+	CollectionDeleteRateMaxKey   = "delete_rate_max_mb"
+	CollectionDeleteRateMinKey   = "delete_rate_min_mb"
+	CollectionBulkLoadRateMaxKey = "bulk_load_rate_max_mb"
+	CollectionBulkLoadRateMinKey = "bulk_load_rate_min_mb"
+	CollectionQueryRateMaxKey    = "query_rate_max_qps"
+	CollectionQueryRateMinKey    = "query_rate_min_qps"
+	CollectionSearchRateMaxKey   = "search_rate_max_vps"
+	CollectionSearchRateMinKey   = "search_rate_min_vps"
+	CollectionDiskQuotaKey       = "disk_quota_mb"
 
-	PartitionDiskQuotaKey = "partition.diskProtection.diskQuota.mb"
+	PartitionDiskQuotaKey = "partition.disk_quota_mb"
 
 	// database level properties
-	DatabaseReplicaNumber       = "database.replica.number"
+	DatabaseReplicaNumber       = "database.replica_number"
 	DatabaseResourceGroups      = "database.resource_groups"
-	DatabaseDiskQuotaKey        = "database.diskQuota.mb"
-	DatabaseMaxCollectionsKey   = "database.max.collections"
-	DatabaseForceDenyWritingKey = "database.force.deny.writing"
-	DatabaseForceDenyReadingKey = "database.force.deny.reading"
+	DatabaseDiskQuotaKey        = "database.disk_quota_mb"
+	DatabaseMaxCollectionsKey   = "database.max_collections"
+	DatabaseForceDenyWritingKey = "database.force_deny_writing"
+	DatabaseForceDenyReadingKey = "database.force_deny_reading"
 
-	DatabaseForceDenyDDLKey           = "database.force.deny.ddl" // all ddl
-	DatabaseForceDenyCollectionDDLKey = "database.force.deny.collectionDDL"
-	DatabaseForceDenyPartitionDDLKey  = "database.force.deny.partitionDDL"
-	DatabaseForceDenyIndexDDLKey      = "database.force.deny.index"
-	DatabaseForceDenyFlushDDLKey      = "database.force.deny.flush"
-	DatabaseForceDenyCompactionDDLKey = "database.force.deny.compaction"
+	DatabaseForceDenyDDLKey           = "database.force_deny_ddl" // all ddl
+	DatabaseForceDenyCollectionDDLKey = "database.force_deny_collection_ddl"
+	DatabaseForceDenyPartitionDDLKey  = "database.force_deny_partition_ddl"
+	DatabaseForceDenyIndexDDLKey      = "database.force_deny_index"
+	DatabaseForceDenyFlushDDLKey      = "database.force_deny_flush"
+	DatabaseForceDenyCompactionDDLKey = "database.force_deny_compaction"
 
 	// collection level load properties
-	CollectionReplicaNumber  = "collection.replica.number"
+	CollectionReplicaNumber  = "collection.replica_number"
 	CollectionResourceGroups = "collection.resource_groups"
 
 	// CMEK related property keys, used in db and collection properties
 	EncryptionEnabledKey = "cipher.enabled"
 	EncryptionRootKeyKey = "cipher.key"
-	EncryptionEzIDKey    = "cipher.ezID"
+	EncryptionEzIDKey    = "cipher.ez_id"
 )
 
 // common properties
@@ -246,10 +246,10 @@ const (
 	MmapEnabledKey             = "mmap.enabled"
 	LazyLoadEnableKey          = "lazyload.enabled"
 	LoadPriorityKey            = "load_priority"
-	PartitionKeyIsolationKey   = "partitionkey.isolation"
-	FieldSkipLoadKey           = "field.skipLoad"
-	IndexOffsetCacheEnabledKey = "indexoffsetcache.enabled"
-	IndexNonEncoding           = "index.nonEncoding"
+	PartitionKeyIsolationKey   = "partition_key_isolation"
+	FieldSkipLoadKey           = "field.skip_load"
+	IndexOffsetCacheEnabledKey = "index_offset_cache_enabled"
+	IndexNonEncoding           = "index.non_encoding"
 	EnableDynamicSchemaKey     = `dynamicfield.enabled`
 	NamespaceEnabledKey        = "namespace.enabled"
 

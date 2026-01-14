@@ -24,7 +24,7 @@ import (
 
 const (
 	// cakTTL const for collection attribute key TTL in seconds.
-	cakTTL = `collection.ttl.seconds`
+	cakTTL = `ttl_seconds`
 	// cakAutoCompaction const for collection attribute key autom compaction enabled.
 	cakAutoCompaction = `collection.autocompaction.enabled`
 )

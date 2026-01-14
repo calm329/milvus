@@ -399,7 +399,7 @@ class AlterIndexParams:
 
     @staticmethod
     def index_offset_cache(enable: bool = True):
-        return {'indexoffsetcache.enabled': enable}
+        return {'index_offset_cache_enabled': enable}
 
     @staticmethod
     def index_mmap(enable: bool = True):

@@ -87,14 +87,14 @@ const (
 
 // properties
 const (
-	CollectionTTLSeconds     = "collection.ttl.seconds"
+	CollectionTTLSeconds     = "ttl_seconds"
 	MmapEnabled              = "mmap.enabled"
-	DatabaseMaxCollections   = "database.max.collections"
+	DatabaseMaxCollections   = "database.max_collections"
 	DatabaseResourceGroups   = "database.resource_groups"
-	DatabaseReplicaNumber    = "database.replica.number"
-	DatabaseForceDenyWriting = "database.force.deny.writing"
-	DatabaseForceDenyReading = "database.force.deny.reading"
-	DatabaseDiskQuotaMb      = "database.diskQuota.mb"
+	DatabaseReplicaNumber    = "database.replica_number"
+	DatabaseForceDenyWriting = "database.force_deny_writing"
+	DatabaseForceDenyReading = "database.force_deny_reading"
+	DatabaseDiskQuotaMb      = "database.disk_quota_mb"
 )
 
 // DefaultTextLang const for full text search

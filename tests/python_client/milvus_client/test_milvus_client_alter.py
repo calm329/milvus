@@ -133,7 +133,7 @@ class TestMilvusClientAlterCollection(TestMilvusClientV2Base):
         target: test alter collection
         method:
             1. alter collection properties after load
-            verify alter successfully if trying to altering lazyload.enabled, mmap.enabled or collection.ttl.seconds
+            verify alter successfully if trying to altering lazyload.enabled, mmap.enabled or ttl_seconds
             2. alter collection properties after release
             verify alter successfully
             3. drop collection properties after load
@@ -171,7 +171,7 @@ class TestMilvusClientAlterCollection(TestMilvusClientV2Base):
                                         check_task=CheckTasks.err_res, check_items=error)
         res3 = self.describe_collection(client, collection_name)[0]
         assert len(res1.get('properties', {})) == 1
-        self.drop_collection_properties(client, collection_name, property_keys=["collection.ttl.seconds"])
+        self.drop_collection_properties(client, collection_name, property_keys=["ttl_seconds"])
         assert len(res1.get('properties', {})) == 1
         # 2. alter collection properties after release
         self.release_collection(client, collection_name)
@@ -179,13 +179,13 @@ class TestMilvusClientAlterCollection(TestMilvusClientV2Base):
         res2 = self.describe_collection(client, collection_name)[0]
         assert {'mmap.enabled': 'True'}.items() <= res2.get('properties', {}).items()
         self.alter_collection_properties(client, collection_name,
-                                         properties={"collection.ttl.seconds": 100, "lazyload.enabled": True})
+                                         properties={"ttl_seconds": 100, "lazyload.enabled": True})
         res2 = self.describe_collection(client, collection_name)[0]
-        assert {'mmap.enabled': 'True', 'collection.ttl.seconds': '100', 'lazyload.enabled': 'True'}.items()  \
+        assert {'mmap.enabled': 'True', 'ttl_seconds': '100', 'lazyload.enabled': 'True'}.items()  \
                 <= res2.get('properties', {}).items()
         self.drop_collection_properties(client, collection_name,
                                         property_keys=["mmap.enabled", "lazyload.enabled",
-                                                       "collection.ttl.seconds"])
+                                                       "ttl_seconds"])
         res3 = self.describe_collection(client, collection_name)[0]
         assert len(res1.get('properties', {})) == 1
 

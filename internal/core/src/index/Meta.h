@@ -53,7 +53,7 @@ constexpr const char* SCALAR_INDEX_ENGINE_VERSION =
 constexpr const char* TANTIVY_INDEX_VERSION = "tantivy_index_version";
 constexpr uint32_t TANTIVY_INDEX_LATEST_VERSION = 7;
 constexpr uint32_t TANTIVY_INDEX_MINIMUM_VERSION = 5;
-constexpr const char* INDEX_NON_ENCODING = "index.nonEncoding";
+constexpr const char* INDEX_NON_ENCODING = "index.non_encoding";
 constexpr const char* NGRAM_INDEX_TYPE = "NGRAM";
 constexpr const char* MIN_GRAM = "min_gram";
 constexpr const char* MAX_GRAM = "max_gram";
@@ -76,7 +76,7 @@ constexpr const char* MMAP_FILE_PATH = "mmap_filepath";
 constexpr const char* ENABLE_MMAP = "enable_mmap";
 constexpr const char* INDEX_FILES = "index_files";
 constexpr const char* INDEX_SIZE = "index_size";
-constexpr const char* ENABLE_OFFSET_CACHE = "indexoffsetcache.enabled";
+constexpr const char* ENABLE_OFFSET_CACHE = "index_offset_cache_enabled";
 
 // VecIndex file metas
 constexpr const char* DISK_ANN_PREFIX_PATH = "index_prefix";

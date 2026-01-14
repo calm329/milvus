@@ -54,7 +54,7 @@ func ExampleClient_CreateDatabase_withProperties() {
 		// handle err
 	}
 
-	err = cli.CreateDatabase(ctx, milvusclient.NewCreateDatabaseOption(dbName).WithProperty("database.replica.number", 3))
+	err = cli.CreateDatabase(ctx, milvusclient.NewCreateDatabaseOption(dbName).WithProperty("database.replica_number", 3))
 	if err != nil {
 		// handle err
 	}

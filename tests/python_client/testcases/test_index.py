@@ -2789,12 +2789,12 @@ class TestBitmapIndex(TestcaseBase):
         """
         target:
             1. alter index and rebuild index again
-                - `{indexoffsetcache.enabled: <bool>}`
+                - `{index_offset_cache_enabled: <bool>}`
                 - `{mmap.enabled: <bool>}`
         method:
             1. create a collection with scalar fields
             2. build BITMAP index on scalar fields
-            3. altering index `indexoffsetcache`/ `mmap`
+            3. altering index `index_offset_cache`/ `mmap`
             4. insert some data and flush
             5. rebuild indexes with the same params again
             6. check altering index

@@ -2410,7 +2410,7 @@ class AlterCollectionChecker(Checker):
         self.milvus_client.alter_collection_properties(collection_name=self.c_name,
                                                        properties={"mmap.enabled": True})
         self.milvus_client.alter_collection_properties(collection_name=self.c_name,
-                                                       properties={"collection.ttl.seconds": 3600})
+                                                       properties={"ttl_seconds": 3600})
         self.milvus_client.alter_collection_properties(collection_name=self.c_name, 
                                                        properties={"dynamicfield.enabled": True})
         res = self.milvus_client.describe_collection(collection_name=self.c_name)
@@ -2423,7 +2423,7 @@ class AlterCollectionChecker(Checker):
             properties = res.get("properties", {})
             if properties.get("mmap.enabled") != "True":
                 return res, False
-            if properties.get("collection.ttl.seconds") != "3600":
+            if properties.get("ttl_seconds") != "3600":
                 return res, False
             if res["enable_dynamic_field"] != True:
                 return res, False

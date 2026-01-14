@@ -232,7 +232,7 @@ class TestMilvusClientDatabaseInvalid(TestMilvusClientV2Base):
         """
         client = self._client()
         # alter database properties
-        properties = {"database.replica.number": 2}
+        properties = {"database.replica_number": 2}
         error = {ct.err_code: 800, ct.err_msg: f"database not found[database={db_name}]"}
         self.alter_database_properties(client, db_name, properties,
                                        check_task=CheckTasks.err_res,
@@ -269,16 +269,16 @@ class TestMilvusClientDatabaseInvalid(TestMilvusClientV2Base):
         client = self._client()
         # 1. create database
         db_name = cf.gen_unique_str(db_prefix)
-        properties = {"database.force.deny.writing": "true",
-                      "database.replica.number": "3"}
+        properties = {"database.force_deny_writing": "true",
+                      "database.replica_number": "3"}
         self.create_database(client, db_name, properties=properties)
         dbs = self.list_databases(client)[0]
         assert db_name in dbs
         self.describe_database(client, db_name,
                                check_task=CheckTasks.check_describe_database_property,
                                check_items={"db_name": db_name,
-                                            "database.force.deny.writing": "true",
-                                            "database.replica.number": "3"})
+                                            "database.force_deny_writing": "true",
+                                            "database.replica_number": "3"})
         alter_properties = {"data.replica.number": 2}
         self.alter_database_properties(client, db_name, properties=alter_properties)
         describe = self.describe_database(client, db_name)[0]
@@ -332,16 +332,16 @@ class TestMilvusClientDatabaseInvalid(TestMilvusClientV2Base):
         client = self._client()
         # 1. create database
         db_name = cf.gen_unique_str(db_prefix)
-        properties = {"database.force.deny.writing": "true",
-                      "database.replica.number": "3"}
+        properties = {"database.force_deny_writing": "true",
+                      "database.replica_number": "3"}
         self.create_database(client, db_name, properties=properties)
         dbs = self.list_databases(client)[0]
         assert db_name in dbs
         self.describe_database(client, db_name,
                                check_task=CheckTasks.check_describe_database_property,
                                check_items={"db_name": db_name,
-                                            "database.force.deny.writing": "true",
-                                            "database.replica.number": "3"})
+                                            "database.force_deny_writing": "true",
+                                            "database.replica_number": "3"})
         drop_properties = {"data.replica.number": 2}
         self.drop_database_properties(client, db_name, property_keys=drop_properties)
         describe = self.describe_database(client, db_name)[0]
@@ -430,8 +430,8 @@ class TestMilvusClientDatabaseValid(TestMilvusClientV2Base):
         client = self._client()
         # 1. create database
         db_name = cf.gen_unique_str(db_prefix)
-        properties = {"database.force.deny.writing": "false",
-                      "database.replica.number": "1"}
+        properties = {"database.force_deny_writing": "false",
+                      "database.replica_number": "1"}
         self.create_database(client, db_name, properties=properties)
         describe = self.describe_database(client, db_name)
         dbs = self.list_databases(client)[0]
@@ -439,8 +439,8 @@ class TestMilvusClientDatabaseValid(TestMilvusClientV2Base):
         self.describe_database(client, db_name,
                                check_task=CheckTasks.check_describe_database_property,
                                check_items={"db_name": db_name,
-                                            "database.force.deny.writing": "false",
-                                            "database.replica.number": "1"})
+                                            "database.force_deny_writing": "false",
+                                            "database.replica_number": "1"})
         self.using_database(client, db_name)
         # 2. create collection
         collection_name = cf.gen_unique_str(prefix)
@@ -486,26 +486,26 @@ class TestMilvusClientDatabaseValid(TestMilvusClientV2Base):
         client = self._client()
         # 1. create database
         db_name = cf.gen_unique_str(db_prefix)
-        properties = {"database.force.deny.writing": "true",
-                      "database.replica.number": "3"}
+        properties = {"database.force_deny_writing": "true",
+                      "database.replica_number": "3"}
         self.create_database(client, db_name, properties=properties)
         dbs = self.list_databases(client)[0]
         assert db_name in dbs
         self.describe_database(client, db_name,
                                check_task=CheckTasks.check_describe_database_property,
                                check_items={"db_name": db_name,
-                                            "database.force.deny.writing": "true",
-                                            "database.replica.number": "3"})
+                                            "database.force_deny_writing": "true",
+                                            "database.replica_number": "3"})
         self.using_database(client, db_name)
-        alter_properties = {"database.replica.number": "2",
-                            "database.force.deny.reading": "true"}
+        alter_properties = {"database.replica_number": "2",
+                            "database.force_deny_reading": "true"}
         self.alter_database_properties(client, db_name, properties=alter_properties)
         self.describe_database(client, db_name,
                                check_task=CheckTasks.check_describe_database_property,
                                check_items={"db_name": db_name,
-                                            "database.force.deny.writing": "true",
-                                            "database.force.deny.reading": "true",
-                                            "database.replica.number": "2"})
+                                            "database.force_deny_writing": "true",
+                                            "database.force_deny_reading": "true",
+                                            "database.replica_number": "2"})
         # 6. drop action
         self.drop_database(client, db_name)
 
@@ -519,11 +519,11 @@ class TestMilvusClientDatabaseValid(TestMilvusClientV2Base):
         client = self._client()
         # 1. create database
         db_name = cf.gen_unique_str(db_prefix)
-        properties = {"database.force.deny.writing": "true",
-                      "database.force.deny.reading": "true",
-                      "database.replica.number": "3",
-                      "database.max.collections": 100,
-                      "database.diskQuota.mb": 10240}
+        properties = {"database.force_deny_writing": "true",
+                      "database.force_deny_reading": "true",
+                      "database.replica_number": "3",
+                      "database.max_collections": 100,
+                      "database.disk_quota_mb": 10240}
         self.create_database(client, db_name, properties=properties)
         dbs = self.list_databases(client)[0]
         assert db_name in dbs
@@ -531,21 +531,21 @@ class TestMilvusClientDatabaseValid(TestMilvusClientV2Base):
                                check_task=CheckTasks.check_describe_database_property,
                                check_items=properties)
         self.using_database(client, db_name)
-        drop1 = {"database.replica.number"}
+        drop1 = {"database.replica_number"}
         self.drop_database_properties(client, db_name, property_keys=drop1)
         describe = self.describe_database(client, db_name)[0]
         self.describe_database(client, db_name,
                                check_task=CheckTasks.check_describe_database_property,
-                               check_items={"database.replica.number": "Missing"})
-        drop2 = ["database.force.deny.writing", "database.force.deny.reading"]
+                               check_items={"database.replica_number": "Missing"})
+        drop2 = ["database.force_deny_writing", "database.force_deny_reading"]
         self.drop_database_properties(client, db_name, property_keys=drop2)
         describe = self.describe_database(client, db_name)[0]
         self.describe_database(client, db_name,
                                check_task=CheckTasks.check_describe_database_property,
-                               check_items={"database.force.deny.writing": "Missing",
-                                           "database.force.deny.reading": "Missing",
+                               check_items={"database.force_deny_writing": "Missing",
+                                           "database.force_deny_reading": "Missing",
                                            "properties_length": 3})
-        # drop3 = "database.max.collections"
+        # drop3 = "database.max_collections"
         # self.drop_database_properties(client, db_name, property_keys=drop3)
         # it doesn't work, but no error reported
         

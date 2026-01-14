@@ -164,7 +164,7 @@ const (
 
 	HTTPReturnIndexMetricType      = "metricType"
 	HTTPReturnIndexType            = "indexType"
-	HTTPIndexOffsetCacheEnabledKey = "indexoffsetcache.enabled"
+	HTTPIndexOffsetCacheEnabledKey = "index_offset_cache_enabled"
 	HTTPMmapEnabledKey             = "mmap.enabled"
 	HTTPReturnIndexTotalRows       = "totalRows"
 	HTTPReturnIndexPendingRows     = "pendingRows"

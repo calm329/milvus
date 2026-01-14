@@ -129,7 +129,7 @@ class TestCreateCollection(TestBase):
 
         ttl_seconds_actual = None
         for d in rsp["data"]["properties"]:
-            if d["key"] == "collection.ttl.seconds":
+            if d["key"] == "ttl_seconds":
                 ttl_seconds_actual = int(d["value"])
         assert rsp['code'] == 0
         assert rsp['data']['enableDynamicField'] == False
@@ -261,7 +261,7 @@ class TestCreateCollection(TestBase):
 
         ttl_seconds_actual = None
         for d in rsp["data"]["properties"]:
-            if d["key"] == "collection.ttl.seconds":
+            if d["key"] == "ttl_seconds":
                 ttl_seconds_actual = int(d["value"])
         assert rsp['code'] == 0
         assert rsp['data']['collectionName'] == name

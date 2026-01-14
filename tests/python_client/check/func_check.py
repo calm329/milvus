@@ -344,21 +344,21 @@ class ResponseChecker:
             raise Exception("No expect values found in the check task")
         if check_items.get("db_name", None) is not None:
             assert res["name"] == check_items.get("db_name")
-        if check_items.get("database.force.deny.writing", None) is not None:
-            if check_items.get("database.force.deny.writing") == "Missing":
-                assert "database.force.deny.writing" not in res
+        if check_items.get("database.force_deny_writing", None) is not None:
+            if check_items.get("database.force_deny_writing") == "Missing":
+                assert "database.force_deny_writing" not in res
             else:
-                assert res["database.force.deny.writing"] == check_items.get("database.force.deny.writing")
-        if check_items.get("database.force.deny.reading", None) is not None:
-            if check_items.get("database.force.deny.reading") == "Missing":
-                assert "database.force.deny.reading" not in res
+                assert res["database.force_deny_writing"] == check_items.get("database.force_deny_writing")
+        if check_items.get("database.force_deny_reading", None) is not None:
+            if check_items.get("database.force_deny_reading") == "Missing":
+                assert "database.force_deny_reading" not in res
             else:
-                assert res["database.force.deny.reading"] == check_items.get("database.force.deny.reading")
-        if check_items.get("database.replica.number", None) is not None:
-            if check_items.get("database.replica.number") == "Missing":
-                assert "database.replica.number" not in res
+                assert res["database.force_deny_reading"] == check_items.get("database.force_deny_reading")
+        if check_items.get("database.replica_number", None) is not None:
+            if check_items.get("database.replica_number") == "Missing":
+                assert "database.replica_number" not in res
             else:
-                assert res["database.replica.number"] == check_items.get("database.replica.number")
+                assert res["database.replica_number"] == check_items.get("database.replica_number")
         if check_items.get("properties_length", None) is not None:
             assert len(res) == check_items.get("properties_length")
 

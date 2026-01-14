@@ -47,9 +47,9 @@ class TestMilvusClientTTL(TestMilvusClientV2Base):
         schema.add_field("embeddings", DataType.FLOAT_VECTOR, dim=dim)
         schema.add_field("embeddings_2", DataType.FLOAT_VECTOR, dim=dim)
         schema.add_field("visible", DataType.BOOL, nullable=True)
-        self.create_collection(client, collection_name, schema=schema, properties={"collection.ttl.seconds": ttl})
+        self.create_collection(client, collection_name, schema=schema, properties={"ttl_seconds": ttl})
         collection_info = self.describe_collection(client, collection_name)[0]
-        assert collection_info['properties']["collection.ttl.seconds"] == str(ttl)
+        assert collection_info['properties']["ttl_seconds"] == str(ttl)
 
         # create index
         index_params = self.prepare_index_params(client)[0]
@@ -191,7 +191,7 @@ class TestMilvusClientTTL(TestMilvusClientV2Base):
             assert len(res[0]) > 0
 
         # alter ttl to 2000s
-        self.alter_collection_properties(client, collection_name, properties={"collection.ttl.seconds": 2000})
+        self.alter_collection_properties(client, collection_name, properties={"ttl_seconds": 2000})
         for consistency_level in consistency_levels:
             log.debug(f"start to search/query after alter ttl with {consistency_level}")
             # search data after alter ttl
@@ -248,7 +248,7 @@ class TestMilvusClientTTL(TestMilvusClientV2Base):
         # Attempt to create collection with extremely large TTL, expecting it to fail
         # Use force_teardown=False since collection creation should fail
         self.create_collection(client, collection_name, schema=schema, 
-                               properties={"collection.ttl.seconds": ttl})
+                               properties={"ttl_seconds": ttl})
         index_params = self.prepare_index_params(client)[0]
         index_params.add_index(field_name="embeddings", index_type="IVF_FLAT", metric_type="COSINE", nlist=128)
         self.create_index(client, collection_name, index_params=index_params)

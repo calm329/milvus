@@ -194,7 +194,7 @@ func (s *ForceMergeCompactionPolicySuite) TestTriggerOneCollection_WithCollectio
 		ID:     collectionID,
 		Schema: newTestSchema(),
 		Properties: map[string]string{
-			"collection.ttl.seconds": "86400",
+			"ttl_seconds": "86400",
 		},
 	}
 
